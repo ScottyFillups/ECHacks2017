@@ -1,52 +1,49 @@
-var btn = $('#btn')
 var lbl = $('#lbl')
 
-btn.addEventListener('click', getLocation)
-
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(displayLocation)
-  } else {
-    lbl.innerHTML = "Geolocation is not supported by this browser."
+function toGooglePosition(pos) {
+  return {
+    lat: pos.coords.latitude,
+    lng: pos.coords.longitude
   }
 }
-function displayLocation (position) {
-  updateLabel(position)
-  initMap(position)
+function $ (s) {
+  return document.querySelector(s)
 }
 function updateLabel (position) {
   lbl.innerHTML = "Latitude: " + position.coords.latitude + 
     "<br>Longitude: " + position.coords.longitude
 }
 
-setInterval(getLocation, 2000)
+function mapHandler () {
+  var defPos = { coords: {lat: 0, lng: 0 } }
+  var map
+  var marker
+  var watchID
+  
+  function update (position) {
+    gPos = toGooglePosition(position)
+    console.log(gPos)
+    console.log(position)
+    updateLabel(position)
+    map.panTo(gPos)
+    marker.setPosition(gPos)
+  }
 
-function initMap (position) {
-  position = position || {
-    coords: {
-      latitude: -25.363,
-      longitude: 131.044
+  (function init() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 25,
+      mapTypeId: 'satellite',
+      center: defPos
+    })
+    marker = new google.maps.Marker({
+      position: defPos,
+      map: map
+    })
+
+    if (navigator.geolocation) {
+      watchID = navigator.geolocation.watchPosition(update)
+    } else {
+      lbl.innerHTML = "Geolocation is not supported by this browser."
     }
-  }
-  var uluru = {
-    lat: position.coords.latitude,
-    lng: position.coords.longitude
-  }
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 18,
-    center: uluru
-  })
-  var marker = new google.maps.Marker({
-    position: uluru,
-    map: map
-  })
-}
-
-
-
-
-// general library code
-
-function $ (s) {
-  return document.querySelector(s)
+  })()
 }
