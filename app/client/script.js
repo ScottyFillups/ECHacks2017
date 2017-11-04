@@ -16,6 +16,30 @@ function showPosition(position) {
 }
 
 
+// testing live update
+function initMap () {}
+window.onload = function () {
+  initMap = function() {
+    var latlng = new google.maps.LatLng(-34.397, 150.644);
+
+    var myOptions = {
+      zoom: 8,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    var map = new google.maps.Map( $('#display') , myOptions);
+  }
+}
+
+
+
+
+
+
+
+// library stuff
+
 function $ (s) {
   return document.querySelector(s)
 }
