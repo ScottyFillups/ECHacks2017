@@ -34,7 +34,3 @@
 - Get geo-location using browser location api (might run into browser compatibility)
 - Send location, pub/sub in redis; periodic write to mongo?
 - Events for raid/creating base, emit and nodejs server checks if within cutoff radius
-
-
-
-
