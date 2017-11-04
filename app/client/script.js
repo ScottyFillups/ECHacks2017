@@ -1,14 +1,11 @@
-var btn = $('#displayCoords')
-var lbl = $('#coordLbl')
-
-var x = $('#demo')
-var btn = $('#update')
+var btn = $('#btn')
+var lbl = $('#lbl')
 
 btn.addEventListener('click', getLocation)
 
 function getLocation() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(initMap)
+    navigator.geolocation.getCurrentPosition(displayLocation)
   } else {
     lbl.innerHTML = "Geolocation is not supported by this browser."
   }
@@ -19,7 +16,7 @@ function displayLocation (position) {
 }
 function updateLabel (position) {
   lbl.innerHTML = "Latitude: " + position.coords.latitude + 
-    "<br>Longitude: " + position.coords.longitude; 
+    "<br>Longitude: " + position.coords.longitude
 }
 
 
@@ -35,7 +32,7 @@ function initMap (position) {
     lng: position.coords.longitude
   }
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 15,
+    zoom: 18,
     center: uluru
   })
   var marker = new google.maps.Marker({
