@@ -8,6 +8,29 @@
   * Although, they will be able to cheat easily by passing custom data via sockets
 
 
+### Data to be stored:
+* Relational data, but we're going to brute force it with document-style mongo
+* {
+  base: {
+    lat: x,
+    lon: y,
+    owner: z
+  }
+}
+* {
+  player: {
+    basesRaided: x,
+    timesRaided: y,
+    baseOn: b,
+    uuid: u
+  }
+}
+  * Not going to store position for now, but could be done in the future
+  * ^ This prevents cheating, use the deltas to find speed, and kick if you surpass a specific acceleration
+  * Can't raid unless you've placed your own base
+  * Can't move base around once placed (for now)
+  * For now, store UUID as cookie, and clients send UUID over
+
 ### Implementation
 
 * On page visit, players establish web socket connection
