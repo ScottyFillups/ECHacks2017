@@ -19,6 +19,7 @@ function updateLabel (position) {
     "<br>Longitude: " + position.coords.longitude
 }
 
+setInterval(getLocation, 2000)
 
 function initMap (position) {
   position = position || {
