@@ -10,7 +10,7 @@ Unfortunately, it became apparent that the precision of geolocation for phones a
 
 Click [here](https://scottyfillups.io/ECHacks2017-attempt1) for a live demo of our quick client-side prototype. Warning: Tendencies to teleport up to 100m in random directions.
 
-<img src="http://scottyfillups.github.io/ECHacks2017-attempt1/echacks2017.png" />
+![What isn't apparent in image: we were on the other side of the 100m river]("http://scottyfillups.github.io/ECHacks2017-attempt1/screenshots/echacks2017.png")
 
 ### Lessons learned
 
